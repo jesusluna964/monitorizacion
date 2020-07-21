@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Monitoreo de servidores{% endblock %}
+
+{% block encabezado %}Login 2 monitoreo de servidores{% endblock %}
+
+{% block contenido %}
+<a href="/logout/">Cerrar sesión</a>
+{% if errores %}
+<div class="alert alert-danger">
+  <strong>ERROR</strong> {{ errores }}  
+</div>
+{% endif %}
+  
+<form method="POST" action="/token/">
+  {% csrf_token %}
+  <div class="row">
+    <div class="col-sm-5">Ingresa token:</div>
+    <div class="col-sm-7"><input type="password" name="token" required></div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4"><input type="submit" value="Login"></div>
+    <div class="col-sm-4"></div>
+  </div>
+  
+</form>
+
+{% endblock %}

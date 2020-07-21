@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Monitoreo de servidores{% endblock %}
+
+{% block encabezado %}Actualizar usuario{% endblock %}
+
+{% block contenido %}
+<a href="/funcionesAdminGlobal/">Regresar</a><br>
+<a href="/logout/">Cerrar sesión</a>
+{% if errores %}
+<div class="alert alert-danger">
+  <strong></strong> {{ errores }}
+</div>
+{% endif %}
+  
+<form method="POST" action="/actualizarAdminServ/">
+  {% csrf_token %}
+  <div class="row">
+    <div class="col-sm-5">Actualizar usuario:</div>
+    <div class="col-sm-7"><input type="text" name="usuario" required></div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-sm-5">Nuevo nombre de usuario:</div>
+    <div class="col-sm-7"><input type="text" name="usuarioNuevo" required></div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-5">Nueva password:</div>
+    <div class="col-sm-7"><input type="password" name="password" required></div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-5">Nuevo chatID:</div>
+    <div class="col-sm-7"><input type="password" name="chatID" required></div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4"><input type="submit" value="Actualizar"></div>
+    <div class="col-sm-4"></div>
+  </div>
+  
+</form>
+
+{% endblock %}

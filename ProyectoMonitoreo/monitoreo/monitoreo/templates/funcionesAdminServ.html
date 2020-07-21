@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Monitoreo de servidores{% endblock %}
+
+{% block encabezado %}Login Exitoso para administrador de servidores{% endblock %}
+
+{% block contenido %}
+<a href="/logout/">Cerrar sesión</a>
+{% if errores %}
+
+
+<div class="alert alert-danger">
+  <strong>ERROR</strong> {{ errores }}  
+</div>
+{% endif %}
+
+{% endblock %}

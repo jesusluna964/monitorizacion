@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Monitoreo de servidores{% endblock %}
+
+{% block encabezado %}Funciones administrador{% endblock %}
+
+{% block contenido %}
+<a href="/logout/">Cerrar sesión</a>
+<p>Usuario administrador de servidores</p>
+<a href="/registrarAdminServ/">Registrar</a>
+<a href="/actualizarAdminServ/">Actualizar</a>
+<a href="/eliminarAdminServ/">Eliminar</a>
+<p>Asociar servidores a administradores de servidores</p>
+<a href="/asociarServ/">Iniciar asociación</a>
+
+{% if errores %}
+
+
+
+<div class="alert alert-danger">
+  <strong>ERROR</strong> {{ errores }}  
+</div>
+{% endif %}
+
+{% endblock %}

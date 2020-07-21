@@ -1,0 +1,58 @@
+version: '3'
+
+services:
+   
+   monitoreo:
+     environment:
+       SECRET_KEY: ${SECRET_KEY}
+       DB_NAME: ${DB_NAME}
+       DB_USER: ${DB_USER}
+       DB_PASSWORD: ${DB_PASSWORD}
+       DB_HOST: ${DB_HOST}
+       DB_PORT: ${DB_PORT}
+       host: ${host}
+       passwd: ${passwd}
+       database: ${database}
+       URL_SERVICIOS: ${URL_SERVICIOS}
+       CLIENTE_SERVICIOS_USR: ${CLIENTE_SERVICIOS_USR}
+       CLIENTE_SERVICIOS_PWD: ${CLIENTE_SERVICIOS_PWD}
+       ADMINSERV_ACTIVO: ${ADMINSERV_ACTIVO}
+     build: .
+     restart: always #posible mensaje keep alive
+     container_name: contenedor_monitoreosegura_final
+     volumes:
+       - ./monitoreo:/code
+     depends_on:
+       - bd
+     deploy:
+       resources:
+         limits:
+           cpus: "1"
+           memory: "250M"
+
+   bd:
+     image: mariadb
+     restart: always
+     environment:
+       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+       MYSQL_DATABASE: ${MYSQL_DATABASE}
+     volumes:
+       - ./data:/var/lib/mysql
+     ports:
+       - 3308:3306
+
+
+   nginx:
+     image: nginx
+     restart: always
+     volumes:
+       - ./config/nginx/conf.d:/etc/nginx/conf.d
+       - ./monitoreo/static:/static
+     depends_on:
+       - monitoreo
+     ports:
+       - 8001:80
+
+
+
+

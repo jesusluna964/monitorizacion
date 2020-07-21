@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Monitoreo de servidores{% endblock %}
+
+{% block encabezado %}Asociación de un servidor con un administrador de servidores{% endblock %}
+
+{% block contenido %}
+<a href="/funcionesAdminGlobal/">Regresar</a><br>
+<a href="/logout/">Cerrar sesión</a>
+{% if errores %}
+<div class="alert alert-danger">
+  <strong></strong> {{ errores }}
+</div>
+{% endif %}
+  
+<form method="POST" action="/asociarServ/">
+  {% csrf_token %}
+
+  <div class="row">
+    <div class="col-sm-5">ID administrador asociado:</div>
+    <div class="col-sm-7"><input type="number" name="adminServidoresID" required></div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-sm-5">Nombre:</div>
+    <div class="col-sm-7"><input type="text" name="nombre" required></div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-5">Dirección IP:</div>
+    <div class="col-sm-7"><input type="text" name="direccionIP" required></div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-5">Puerto:</div>
+    <div class="col-sm-7"><input type="text" name="puerto" required></div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-5">usuarioAPI:</div>
+    <div class="col-sm-7"><input type="password" name="usuarioAPI" required></div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-5">passwordAPI:</div>
+    <div class="col-sm-7"><input type="password" name="passwordAPI" required></div>
+  </div>
+
+
+
+  <div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4"><input type="submit" value="Asociar"></div>
+    <div class="col-sm-4"></div>
+  </div>
+  
+</form>
+
+{% endblock %}

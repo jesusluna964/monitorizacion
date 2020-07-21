@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Monitoreo de servidores{% endblock %}
+
+{% block encabezado %}Login Exitoso para administrador de servidores{% endblock %}
+
+{% block contenido %}
+<a href="/funcionesAdminServ/">Actualizar</a><br>
+<a href="/logout/">Cerrar sesión</a>
+<ul>
+{% for datos in monitoreo %}
+
+<li>
+    {{datos.Disco }}
+    {{datos.Memoria }}
+    {{datos.CPU }}
+</li>
+
+
+
+
+
+{% endfor %}
+</ul>
+{% endblock %}
